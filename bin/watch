@@ -58,7 +58,9 @@ watch.on('all', execute)
  */
 
 function execute (event, path) {
-  exec(command, function(err, stdout, stderr) {
+  console.log("file changed: " + path)
+
+  exec(command.replace(/FILE/g, path), function(err, stdout, stderr) {
     if(err) throw err;
     if(stderr) console.log(stderr);
     if(stdout) console.log(stdout);
