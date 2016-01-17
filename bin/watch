@@ -47,7 +47,7 @@ var command = program.args.join(' ')
  * Watch.
  */
 
-var watch = new Gaze(program.pattern)
+var watch = new Gaze(program.pattern.split(','))
 watch.on('all', execute)
 
 /**
@@ -59,7 +59,6 @@ watch.on('all', execute)
 
 function execute (event, path) {
   console.log("file changed: " + path)
-
   exec(command.replace(/FILE/g, path), function(err, stdout, stderr) {
     if(err) throw err;
     if(stderr) console.log(stderr);
